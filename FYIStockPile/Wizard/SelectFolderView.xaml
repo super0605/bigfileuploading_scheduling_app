@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="FYIStockPile.Wizard.SelectFolderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FYIStockPile.Wizard"
+             xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Margin="50">
+            <TextBlock FontSize="25" FontWeight="Normal" Margin="5" TextAlignment="Center">Select your folder(s) to migrate</TextBlock>
+            <Control Margin="0 20"></Control>
+            <CheckBox Name="IncludeFolderNameUI" IsChecked="{Binding IncludeFolderName}" Margin="50,0,50,0">Include folder name on export</CheckBox>
+            <StackPanel Margin="50,5,50,0" MinHeight="180">
+                <Border BorderBrush="Black" BorderThickness="1">
+                    <ScrollViewer MinHeight="200">
+                        <TextBlock Name="OutputBlock"  Foreground="Black" FontFamily="Consolas" Padding="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="180"/>
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
+            <Grid Height="50" Margin="50,0,50,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Grid.Row="0" Content="Add Folder"  Height="40" Width="100" FontSize="18" 
+                        HorizontalAlignment="Left" Margin="0,5,0,0" BorderThickness="1" BorderBrush="Black"
+                        Click="AddFolder">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Grid.Column="1" Grid.Row="0" Content="Done"  Height="40" Width="100" FontSize="18" 
+                        HorizontalAlignment="Right" Margin="0,5,0,0" BorderThickness="1" BorderBrush="Black"
+                        Command="{mvvmc:NavigateCommand ControllerID=Wizard, Action=AddFolderDone}">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
